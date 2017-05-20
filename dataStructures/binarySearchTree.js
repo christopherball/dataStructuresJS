@@ -149,20 +149,7 @@ class Node {
     }
 }
 
-//TODO: Breakout below into separate test framework
-const sampleBST = new BinarySearchTree();
-sampleBST.add(12);
-sampleBST.add(5);
-sampleBST.add(15);
-sampleBST.add(13);
-sampleBST.add(12);
-sampleBST.add(120);
-sampleBST.add(19);
-sampleBST.add(-1);
-
-console.log(JSON.stringify(sampleBST, null, 4));
-console.log(sampleBST.contains(11));
-console.log(sampleBST.contains(13));
-console.log(sampleBST.preOrderTraverse());
-console.log(sampleBST.inOrderTraverse());
-console.log(sampleBST.postOrderTraverse());
+module.exports = {
+    BinarySearchTree: BinarySearchTree,
+    Node: Node
+}
