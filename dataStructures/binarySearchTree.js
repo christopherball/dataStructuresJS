@@ -40,10 +40,48 @@ class BinarySearchTree {
         let targetNode = this.getNode(data);
 
         if (targetNode !== null) {
+            //Node to be removed has no children
             if (!targetNode.leftChild && !targetNode.rightChild) {
-                if (targetNode.data > targetNode.parent.data)
+                if (targetNode === this.root)
+                    this.root = null;
+                else if (targetNode.data > targetNode.parent.data)
                     targetNode.parent.rightChild = null;
-                    //TODO
+                else
+                    targetNode.parent.leftChild = null;
+            }
+
+            //Node to be removed has one child
+            else if ((targetNode.leftChild && !targetNode.rightChild) || (!targetNode.leftChild && targetNode.rightChild)) {
+                if (targetNode === this.root) {
+                    if (targetNode.leftChild)
+                        this.root = targetNode.leftChild;
+                    else
+                        this.root = targetNode.rightChild;
+                }
+                else if (targetNode.leftChild)
+                    targetNode.parent.rightChild = targetNode.leftChild;
+                else
+                    targetNode.parent.leftChild = targetNode.rightChild;
+            }
+
+            //Node to be removed has two children
+            else {
+                if (targetNode === this.root) {
+                    this.root = targetNode.leftChild;
+                    this.root.rightChild = targetNode.rightChild;
+                }
+                else {
+                    if (targetNode.data > this.root.data) {
+                        let minNode = this.getMinNode(targetNode.rightChild);
+                        this.remove(minNode.data);
+                        targetNode.data = minNode.data;
+                    }
+                    else {
+                        let maxNode = this.getMaxNode(targetNode.leftChild);
+                        this.remove(maxNode.data);
+                        targetNode.data = maxNode.data;
+                    }
+                }
             }
         }
     }
@@ -54,13 +92,15 @@ class BinarySearchTree {
             this.preOrderTraversal = [];
         }
 
-        this.preOrderTraversal.push(node.data);
+        if (node !== null) {
+            this.preOrderTraversal.push(node.data);
 
-        if (node.leftChild !== null) 
-            this.preOrderTraverse(node.leftChild);
-        if (node.rightChild !== null)
-            this.preOrderTraverse(node.rightChild);
-        
+            if (node.leftChild !== null) 
+                this.preOrderTraverse(node.leftChild);
+            if (node.rightChild !== null)
+                this.preOrderTraverse(node.rightChild);
+        }
+
         return this.preOrderTraversal;
     }
 
@@ -70,14 +110,16 @@ class BinarySearchTree {
             this.inOrderTraversal = [];
         }
 
-        if (node.leftChild !== null) 
-            this.inOrderTraverse(node.leftChild);
+        if (node !== null) {
+            if (node.leftChild !== null) 
+                this.inOrderTraverse(node.leftChild);
 
-        this.inOrderTraversal.push(node.data);
+            this.inOrderTraversal.push(node.data);
 
-        if (node.rightChild !== null)
-            this.inOrderTraverse(node.rightChild);
-        
+            if (node.rightChild !== null)
+                this.inOrderTraverse(node.rightChild);
+        }
+
         return this.inOrderTraversal;
     }
 
@@ -87,13 +129,15 @@ class BinarySearchTree {
             this.postOrderTraversal = [];
         }
 
-        if (node.leftChild !== null) 
-            this.postOrderTraverse(node.leftChild);
-        if (node.rightChild !== null)
-            this.postOrderTraverse(node.rightChild);
-        
-        this.postOrderTraversal.push(node.data);
-
+        if (node !== null) {
+            if (node.leftChild !== null) 
+                this.postOrderTraverse(node.leftChild);
+            if (node.rightChild !== null)
+                this.postOrderTraverse(node.rightChild);
+            
+            this.postOrderTraversal.push(node.data);
+        }
+    
         return this.postOrderTraversal;
     }
 
@@ -122,20 +166,16 @@ class BinarySearchTree {
         }
     }
 
-    getLargestChildNode(startNode) {
+    getMaxNode(startNode) {
         if (startNode.rightChild !== null)
-            return getLargestChildNode(startNode.rightChild);
-        else if (startNode.leftChild !== null)
-            return getLargestChildNode(startNode.leftChild);
+            return this.getMaxNode(startNode.rightChild);
         
         return startNode;
     }
 
-    getSmallestChildNode(startNode) {
+    getMinNode(startNode) {
         if (startNode.leftChild !== null)
-            return getSmallestChildNode(startNode.leftChild);
-        else if (startNode.leftChild !== null)
-            return getSmallestChildNode(startNode.rightChild);
+            return this.getMinNode(startNode.leftChild);
         
         return startNode;
     }
