@@ -1,7 +1,7 @@
 # dataStructuresJS
 Serves as a playground for reproducing common data structures using ES6 Javascript with NodeJS.
 
-To execute full unit test suite against all data structures, simply type "npm test".  Here is an example showing tests run against the BinarySearchTree data structure:
+To execute the full unit test suite using *mocha* against all data structures, simply type `npm test`.  Here is an example showing test results run against the BinarySearchTree data structure:
 ```
   BinarySearchTree
     #contains()
