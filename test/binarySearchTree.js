@@ -1,5 +1,5 @@
-var assert = require('assert');
-var binarySearchTree = require('../dataStructures/binarySearchTree.js');
+const assert = require('assert');
+const binarySearchTree = require('../dataStructures/binarySearchTree.js');
 
 describe('BinarySearchTree', function () {
 	let sampleBST = new binarySearchTree.BinarySearchTree();
