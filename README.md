@@ -2,7 +2,7 @@
 Serves as a playground for reproducing common data structures using ES6 Javascript with NodeJS.
 
 To execute full unit test suite against all data structures, simply type "npm test".  Here is an example showing tests run against the BinarySearchTree data structure:
-
+```
   BinarySearchTree
     #contains()
       ✓ should return true for containing all of the following: [ 12, 5, 15, 13, 120, 19, -1 ]
@@ -27,3 +27,4 @@ To execute full unit test suite against all data structures, simply type "npm te
 
 
   13 passing (15ms)
+```
