@@ -12,7 +12,9 @@ class Stack {
     }
 
     clear() {
+        let remainingData = this.dataContainer.reverse();
         this.dataContainer = [];
+        return remainingData;
     }
 
     isEmpty() {

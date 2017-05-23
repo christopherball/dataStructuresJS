@@ -13,7 +13,7 @@ describe('HashTable', function () {
 	});
 
 	describe('#add()', function () {
-		it('should successfully add the key-value pair of "orange: orange"', function () {
+		it('should successfully add the key-value pair of "orange: orange', function () {
 			sampleHT.add("orange", "orange");
 			assert.equal(sampleHT.get("orange"), "orange");
 		});
@@ -38,7 +38,7 @@ describe('HashTable', function () {
 	});
 
 	describe('#contains()', function () {
-		it('should contain an "apple", but not a "mysteryFruit"', function() {
+		it('should contain an "apple", but not a "mysteryFruit', function() {
 			assert.equal(sampleHT.contains("apple"), true);
 			assert.equal(sampleHT.contains("mysteryFruit"), false);
 		});
