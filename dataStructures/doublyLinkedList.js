@@ -19,7 +19,7 @@ class DoublyLinkedList {
             this.head = this.tail = new Node(value);
         else {
             this.tail.child = new Node(value);
-            this.tail.parent = this.tail;
+            this.tail.child.parent = this.tail;
             this.tail = this.tail.child;
         }
     }
@@ -28,20 +28,26 @@ class DoublyLinkedList {
         if (this.head) {
             let resultNode = this.head;
             this.head = this.head.child;
+
+            if (this.head)
+                this.head.parent = null;
+
             return resultNode;
         }
-
-        return null;
+        return undefined;
     }
 
     popTail() {
         if (this.tail) {
             let resultNode = this.tail;
-            this.tail.parent.child = null;
+            this.tail = this.tail.parent;
+
+            if (this.tail)
+                this.tail.child = null;
+            
             return resultNode;
         }
-
-        return null;
+        return undefined;
     }
 }
 
