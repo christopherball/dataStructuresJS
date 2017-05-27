@@ -4,7 +4,7 @@ const stack = require('../dataStructures/stack.js');
 describe('Stack', function () {
 	let sampleStack = new stack.Stack();
 
-	beforeEach('Initializing DoublyLinkedList...', function () {
+	beforeEach('Initializing Stack...', function () {
 		sampleStack = new stack.Stack();
 	});
 
