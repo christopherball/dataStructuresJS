@@ -1,6 +1,10 @@
+const queue = require('./queue.js');
+
 class BinarySearchTree {
     constructor() {
         this.root = null;
+        this.levelOrderTraversal = [];
+        this.levelOrderTraversalQueue = new queue.Queue();
         this.preOrderTraversal = [];
         this.inOrderTraversal = [];
         this.postOrderTraversal = [];
@@ -84,6 +88,28 @@ class BinarySearchTree {
                 }
             }
         }
+    }
+
+    levelOrderTraverse(node) {
+        if (node === undefined) {
+            node = this.root;
+            this.levelOrderTraversal = [];
+        }
+
+        if (node !== null && node !== undefined) {
+            this.levelOrderTraversal.push(node.data);
+
+            if (node.leftChild !== null)
+                this.levelOrderTraversalQueue.queue(node.leftChild);
+
+            if (node.rightChild !== null)
+                this.levelOrderTraversalQueue.queue(node.rightChild);
+
+            if (this.levelOrderTraversalQueue.size() > 0)
+                this.levelOrderTraverse(this.levelOrderTraversalQueue.dequeue());
+        }
+
+        return this.levelOrderTraversal;
     }
 
     preOrderTraverse(node) {

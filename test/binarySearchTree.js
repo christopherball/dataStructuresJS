@@ -21,6 +21,12 @@ describe('BinarySearchTree', function () {
 		});
 	});
 
+	describe('#levelOrderTraverse()', function () {
+		it('should return the following tree order: [ 12, 5, 15, -1, 13, 120, 19 ]', function () {
+			assert.deepEqual(sampleBST.levelOrderTraverse(), [12, 5, 15, -1, 13, 120, 19]);
+		});
+	});
+
 	describe('#preOrderTraverse()', function () {
 		it('should return the following tree order: [ 12, 5, -1, 15, 13, 120, 19 ]', function () {
 			assert.deepEqual(sampleBST.preOrderTraverse(), [12, 5, -1, 15, 13, 120, 19]);
